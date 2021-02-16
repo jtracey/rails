@@ -684,6 +684,21 @@ class RequestProtocol < BaseRequestTest
   end
 end
 
+class RequestTrustworthy < BaseRequestTest
+  test "https trustworthy?" do
+    assert_predicate stub_request("HTTPS" => "on"), :trustworthy?
+  end
+
+  test ".onion trustworthy?" do
+    assert_predicate stub_request("HTTP_HOST" => "fake.onion"), :trustworthy?
+    assert_predicate stub_request("HTTP_HOST" => "fake.onion:8080"), :trustworthy?
+  end
+
+  test "unencrypted not trustworthy?" do
+    assert_not_predicate stub_request, :trustworthy?
+  end
+end
+
 class RequestMethod < BaseRequestTest
   test "method returns environment's request method when it has not been
     overridden by middleware".squish do

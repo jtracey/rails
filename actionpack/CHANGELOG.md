@@ -1,3 +1,7 @@
+*   Consider onion services secure for cookies.
+
+    *Justin Tracey*
+
 *   `ActionDispatch::Request#content_type` now returned Content-Type header as it is.
 
     Previously, `ActionDispatch::Request#content_type` returned value does NOT contain charset part.

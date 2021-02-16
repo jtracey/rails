@@ -438,6 +438,10 @@ module ActionDispatch
       super || scheme == "wss"
     end
 
+    def trustworthy?
+      ssl? || host.end_with?(".onion")
+    end
+
     def inspect # :nodoc:
       "#<#{self.class.name} #{method} #{original_url.dump} for #{remote_ip}>"
     end
